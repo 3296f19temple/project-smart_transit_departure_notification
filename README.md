@@ -12,4 +12,10 @@ Miranda, aged 24, is a manager at a café in center city Philadelphia. She often
 Miranda’s frequent use of SEPTA transit services such as the subway and the public bus system, as well as the PATCO lines makes her adept in traversing public transit and not a stranger to using multiple transit methods at once. This being said, working such strenuous hours and at various times of the day often result in Miranda falling asleep or getting distracted during her commute to and from work. A feature such as the departure notification would greatly ease her multi-step commute as well as ease her anxiety about missing any stops.
 
 #### Persona 2
+Billy, aged 27, is an office worker living in University City. Billy is from outside of Boston, and he moved to Philadelphia for work. He has a degree in Printed Document File Management from Boston College. His father is a mime, and his mother won a bronze medal in skiing at the '94 Olympic Winter Games in Lillehammer, Norway.
 
+Billy uses a computer for his job as well as for internet browsing and streaming. On the weekends, Billy likes to go out with his friends. This brings him to many different parts of the city. Billy prefers to use the subway because of its simplicity and because of a lack of familiarity with the bus system. Billy finds himself in odd parts of the city at odd times, so being able to quickly know the nearest subway station to him, the next departure times from that station, and the last trip of the day would be invaluable to Billy to ease his commute home.
+
+#### Persona 3
+
+#### Persona 4
