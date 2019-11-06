@@ -17,6 +17,9 @@ Billy, aged 27, is an office worker living in University City. Billy is from out
 Billy uses a computer for his job as well as for internet browsing and streaming. On the weekends, Billy likes to go out with his friends. This brings him to many different parts of the city. Billy prefers to use the subway because of its simplicity and because of a lack of familiarity with the bus system. Billy finds himself in odd parts of the city at odd times, so being able to quickly know the nearest subway station to him, the next departure times from that station, and the last trip of the day would be invaluable to Billy to ease his commute home.
 
 #### Persona 3
+Joshee, age 22, is a student at Temple University. He grew up in South Eastern, PA, on a small farmhouse, with his father, who is a large animal veterinarian. He was an active member of his high school's marching band, and continued his involvement with marching band into college. While he initially came to Temple to study biology he eventually changed his major to political science.  
+
+Joshee lives on campus, and recently got hired as an intern at a law firm in center city. Because of his somewhat rural upbringing, he is having quite a bit of trouble getting accustomed to the array of trains, trolleys, and buses he needs to use to get to work and back.  Another side affect of his rural upbringing is an unfamiliarity with technology. He would like something that would simply tell him where to be to get on a route, and then notify him when to get off/transfer. Preferably, as a notification he can view on his home screen so he doesn't have to navigate menus, dropdowns, and settings.  
 
 #### Persona 4
 
