@@ -4,7 +4,7 @@ John Brown, Eric Hart, Steven Nardo, Jake Wells
 ## Vision Statement
 For public transit users who miss their trains/busses, Smart Transit Departure Notification (clever name pending) is an app that presents departure times from nearby public transit stations to the user in the form of a persistent notification on their phone. Unlike the Septa app, our product makes finding the next departure times at any station as easy as looking at your lockscreen.
 
-##Project Abstract
+## Project Abstract
 
 I would like to develop a public transport notification app for Android. Currently, I can use the Septa app to select a desired route, I can favorite the route and use the app to see the next departing trains along that route. But, I need to constantly reopen the app to do this. If I want to take a route outside of this, I need to look up that specific route again.
 
@@ -14,7 +14,7 @@ Additionally, the user should be able to give the app location permission, and t
 
 Finally, the user should have the option to mark that they have gotten onto a transit route, and the app should be able to set an alarm that will go off just before they arrive. The user should be able to quickly pick a destination through the app, as well as to mark a destination as a favorite. They should ideally be able to do all of this from a notification on their lockscreen. The app should set the alarm based on arrival time by default, or by location for a more accurate result. Wit this, the app should also be able to predict some delays naturally.
 
-###Resources
+### Resources
 Java, Android Studio, Google Maps API and/or SEPTA API, Neura API
 
 
@@ -30,12 +30,12 @@ Billy, aged 27, is an office worker living in University City. Billy is from out
 
 Billy uses a computer for his job as well as for internet browsing and streaming. On the weekends, Billy likes to go out with his friends. This brings him to many different parts of the city. Billy prefers to use the subway because of its simplicity and because of a lack of familiarity with the bus system. Billy finds himself in odd parts of the city at odd times, so being able to quickly know the nearest subway station to him, the next departure times from that station, and the last trip of the day would be invaluable to Billy to ease his commute home.
 
-#### Persona 3
+#### Persona 3: John Brown
 Joshee, age 22, is a student at Temple University. He grew up in South Eastern, PA, on a small farmhouse, with his father, who is a large animal veterinarian. He was an active member of his high school's marching band, and continued his involvement with marching band into college. While he initially came to Temple to study biology he eventually changed his major to political science.  
 
 Joshee lives on campus, and recently got hired as an intern at a law firm in center city. Because of his somewhat rural upbringing, he is having quite a bit of trouble getting accustomed to the array of trains, trolleys, and buses he needs to use to get to work and back.  Another side affect of his rural upbringing is an unfamiliarity with technology. He would like something that would simply tell him where to be to get on a route, and then notify him when to get off/transfer. Preferably, as a notification he can view on his home screen so he doesn't have to navigate menus, dropdowns, and settings.  
 
-#### Persona 4
+#### Persona 4: Eric Hart
 
 Chris, age 17, is a high school student living in Downingtown, PA where he was born and raised. His father works in IT for an insurance company and his mother is a paralegal. Chris has no aspirations as to what he will do with his life outside of high school but is somewhat invested in his endeavours as a soundcloud rapper under the name "Yung Void". He currently works as a part time cashier at Wawa.
 
