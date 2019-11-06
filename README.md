@@ -19,3 +19,7 @@ Billy uses a computer for his job as well as for internet browsing and streaming
 #### Persona 3
 
 #### Persona 4
+
+Chris, age 17, is a high school student living in Downingtown, PA where he was born and raised. His father works in IT for an insurance company and his mother is a paralegal. Chris has no aspirations as to what he will do with his life outside of high school but is somewhat invested in his endeavours as a soundcloud rapper under the name "Yung Void". He currently works as a part time cashier at Wawa.
+
+Chris enjoys visiting Philadelphia on weekends with his friends to see live music performances and attend college parties. Neither him or his friends own a car so they take the regional rail and local trains to get to and around the city. Chris and his friends are still new to subway system and often times find themselves confused and stressed when trying to make it to their trains on time. An application that can familiarize Chris with the train system and send push notifications of departure times would ease the anxiety of navigating SEPTA and create a more positive experience for Chris and his friends when they want to go to the city.
