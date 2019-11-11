@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">HelloWorld</string>
+    <string name="app_name">App Name</string>
+    <string name="app_img">AppLogo</string>
+
+    <string name="header_bar">orange_header</string>
+
+    <string name="subway_icon">subway_icon</string>
+    <string name="bus_icon">bus_icon</string>
+    <string name="favorite_icon">favorite_icon</string>
 </resources>

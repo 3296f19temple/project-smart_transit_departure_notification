@@ -6,13 +6,93 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!--Top header bar-->
+    <ImageView
+        android:id="@+id/header_bar"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:contentDescription="@string/header_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@color/header_bar" />
+
+    <!--App name text: currently placeholder-->
     <TextView
+        android:id="@+id/app_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:fontFamily="@font/leckerli_one"
+        android:text="@string/app_name"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/header_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/header_bar"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <!--Vertical layout of content body-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="100"
+        android:layout_marginTop="100dp"
+        android:orientation="vertical">
+
+        <!--Horizontal layout of first button row-->
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="215dp"
+            android:layout_marginTop="50dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp">
+
+            <!--Bus button-->
+            <ImageView
+                android:id="@+id/bus_icon"
+                android:layout_width="0dp"
+                android:layout_height="215dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/bus_icon"
+                app:srcCompat="@drawable/selector_frame_bus" />
+
+            <!--Subway button-->
+            <ImageView
+                android:id="@+id/subway_icon"
+                android:layout_width="0dp"
+                android:layout_height="215dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/subway_icon"
+                app:srcCompat="@drawable/selector_frame_subway" />
+
+        </LinearLayout>
+
+        <!--Horizontal layout of second button row-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="215dp"
+            android:layout_weight="1"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp">
+
+            <!--Favorite button-->
+            <ImageView
+                android:id="@+id/favoriteIcon"
+                android:layout_width="0dp"
+                android:layout_height="215dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/favorite_icon"
+                app:srcCompat="@drawable/selector_frame_favorites" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
