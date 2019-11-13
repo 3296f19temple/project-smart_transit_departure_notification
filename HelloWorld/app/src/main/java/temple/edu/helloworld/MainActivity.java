@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Anonymous on click function that redirects to the bus selector activity
         ImageView bus_img = (ImageView) findViewById(R.id.bus_icon);
         bus_img.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Anonymous on click function that redirects to the subway selector activity
         ImageView subway_img = (ImageView) findViewById(R.id.subway_icon);
         subway_img.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Anonymous on click function that redirects to the rail selector activity
         ImageView rail_img = (ImageView) findViewById(R.id.rail_icon);
         rail_img.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Anonymous on click function that redirects to the favorites activity
         ImageView favorites_img = (ImageView) findViewById(R.id.favorites_icon);
         favorites_img.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
