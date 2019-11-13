@@ -1,6 +1,9 @@
 # Smart Departure Transit Notification
 John Brown, Eric Hart, Steven Nardo, Jake Wells
 
+## Trello Board
+https://trello.com/b/dd7aJfuv/sdtm
+
 ## Vision Statement
 For public transit users who miss their trains/busses, Smart Transit Departure Notification (clever name pending) is an app that presents departure times from nearby public transit stations to the user in the form of a persistent notification on their phone. Unlike the Septa app, our product makes finding the next departure times at any station as easy as looking at your lockscreen.
 
