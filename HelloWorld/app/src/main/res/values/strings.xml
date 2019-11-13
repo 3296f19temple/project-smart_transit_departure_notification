@@ -4,7 +4,16 @@
 
     <string name="header_bar">orange_header</string>
 
-    <string name="subway_icon">subway_icon</string>
     <string name="bus_icon">bus_icon</string>
-    <string name="favorite_icon">favorite_icon</string>
+    <string name="subway_icon">subway_icon</string>
+    <string name="rail_icon">rail_icon</string>
+    <string name="favorites_icon">favorites_icon</string>
+
+    <string name="bus_title">Bus Schedule</string>
+    <string name="subway_title">Subway Schedule</string>
+    <string name="rail_title">Regional Rail Schedule</string>
+    <string name="favorites_title">Favorites</string>
+
+    <string name="to">To:</string>
+    <string name="from">From:</string>
 </resources>
