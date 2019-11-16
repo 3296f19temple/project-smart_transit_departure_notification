@@ -58,7 +58,7 @@
             tools:layout_editor_absoluteX="0dp">
 
             <Spinner
-                android:id="@+id/bus_spinner"
+                android:id="@+id/rail_spinner"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" />
 

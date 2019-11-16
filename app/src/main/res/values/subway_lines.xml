@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="subway_line_array">
+        <item>Broad Street Line</item>
+        <item>Market Frankford Line</item>
+        <item>Norristown High Speed Line</item>
+    </string-array>
+</resources>

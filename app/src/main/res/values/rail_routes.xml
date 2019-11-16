@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="rail_line_array">
+        <item>Airport Line</item>
+        <item>Manayunk/Norristown Line</item>
+        <item>Chestnut Hill East Line</item>
+        <item>Media/Elwyn Line</item>
+        <item>Chestunut Hill West Line</item>
+        <item>Paoli/Thorndale Line</item>
+        <item>Cynwyd Line</item>
+        <item>Trenton Line</item>
+        <item>Fox Chase Line</item>
+        <item>Warminster Line</item>
+        <item>Glenside</item>
+        <item>West Trenton Line</item>
+        <item>Lansdale/Doylestown Line</item>
+        <item>Wilmington/Newark Line</item>
+    </string-array>
+</resources>
