@@ -1,5 +1,7 @@
-<resources>
-    <string name="app_name">App Name</string>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation" >
+    <string name="app_name">Smart Transit</string>
     <string name="app_img">AppLogo</string>
 
     <string name="header_bar">orange_header</string>
