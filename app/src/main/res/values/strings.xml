@@ -4,7 +4,7 @@
     <string name="app_name">Smart Transit</string>
     <string name="app_img">AppLogo</string>
 
-    <string name="header_bar">orange_header</string>
+    <string name="header_bar">teal_header</string>
 
     <string name="bus_icon">bus_icon</string>
     <string name="subway_icon">subway_icon</string>
