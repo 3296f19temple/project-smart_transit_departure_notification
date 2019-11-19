@@ -30,8 +30,6 @@
         app:layout_constraintTop_toTopOf="@+id/header_bar"
         app:srcCompat="@drawable/app_logo" />
 
-
-
     <!--Vertical layout of content body-->
     <LinearLayout
         android:layout_width="match_parent"
