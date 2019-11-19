@@ -33,6 +33,6 @@ public class bus_selector extends AppCompatActivity {
         spinner.setAdapter(adapter);
 
         //populates from and to spinners based on original spinner choice
-        spinner.setOnItemSelectedListener(new SpinnerActivity());
+        spinner.setOnItemSelectedListener(new SpinnerActivity(this));
     }
 }

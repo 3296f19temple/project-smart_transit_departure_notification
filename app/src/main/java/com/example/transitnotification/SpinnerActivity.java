@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,12 +21,19 @@ import java.net.URL;
 import java.util.Iterator;
 
 public class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
+
+    public AppCompatActivity myActivity;
+
+    public SpinnerActivity(AppCompatActivity a) {
+        myActivity = a;
+    }
+
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
         // An item was selected. We retrieve the selected item using
         String choice = (String) parent.getItemAtPosition(pos);
         //get route_id and pass it to method that will call api
         String[] routeNum = choice.split(" ");
-        new RetrieveStopsTask().execute(routeNum[1]);
+        new RetrieveStopsTask(myActivity).execute(routeNum[1]);
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
