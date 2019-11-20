@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -105,7 +106,8 @@ public class rail_selector extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String from_selected = (String) from_adapter.getItem(position);
 
-                PopulateToSpinner(from_array, from_selected);
+                //String[] to_array = PopulateToStringArray(from_array, from_selected);
+                PopulateToSpinner(from_array);
             }
 
             @Override
@@ -116,8 +118,7 @@ public class rail_selector extends AppCompatActivity {
 
     }
 
-    private void PopulateToSpinner(String[] from_array, String from_selected) {
-
+    private String[] PopulateToStringArray(String[] from_array, String from_selected){
         String[] to_array = new String[from_array.length - 1];
         for(int i = 0, j = 0; i < from_array.length; i++, j++){
             if(from_array[j].equals(from_selected)){
@@ -125,12 +126,19 @@ public class rail_selector extends AppCompatActivity {
             }
             else{
                 to_array[j] = from_array[i];
+                Log.d("ToStringArray","to_array[j] = "+to_array[j]);
             }
         }
+
+        return to_array;
+    }
+
+    private void PopulateToSpinner(String[] to_array) {
 
         Spinner to_spinner = (Spinner) findViewById(R.id.to_spinner);
         ArrayAdapter<String> to_adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, to_array);
+        to_spinner.setAdapter((SpinnerAdapter) to_adapter);
 
         to_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
