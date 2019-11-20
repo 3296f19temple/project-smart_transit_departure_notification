@@ -132,6 +132,16 @@ public class rail_selector extends AppCompatActivity {
         ArrayAdapter<String> to_adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, to_array);
 
-        // TODO: call next activity
+        to_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // TODO: call next activity
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 }
