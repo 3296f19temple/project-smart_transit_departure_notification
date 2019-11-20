@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 public class rail_selector extends AppCompatActivity {
 
@@ -21,5 +23,15 @@ public class rail_selector extends AppCompatActivity {
                 startActivity(myIntent);
             }
         });
+
+        //populate spinner
+        Spinner spinner = (Spinner) findViewById(R.id.rail_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.rail_line_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        //populates from and to spinner based on original spinner choice
+        //spinner.setOnItemSelectedListener(new SpinnerActivity());
     }
 }

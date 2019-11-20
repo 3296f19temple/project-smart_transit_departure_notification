@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="mfl_stop_array">
+        <item>69th St Transportation Center</item>
+        <item>Millbourne Station</item>
+        <item>63rd St Station</item>
+        <item>60th St Station</item>
+        <item>56th St Station</item>
+        <item>52nd St Station</item>
+        <item>46th St Station</item>
+        <item>40th St Station</item>
+        <item>34th St Station</item>
+        <item>30th St Station</item>
+        <item>15th St Station</item>
+        <item>13th St Station</item>
+        <item>11th St Station</item>
+        <item>8th St Station</item>
+        <item>5th St Independence Hall Station</item>
+        <item>2nd St Station</item>
+        <item>Spring Garden Station</item>
+        <item>Girard Station</item>
+        <item>Berks Station</item>
+        <item>York Dauphin Station</item>
+        <item>Huntingdon Station</item>
+        <item>Somerset Station</item>
+        <item>Allegheny Station</item>
+        <item>Tioga Station</item>
+        <item>Erie Torresdale Station</item>
+        <item>Church Station</item>
+        <item>Arrott Transportation Center</item>
+        <item>Frankford Transportation Center</item>
+    </string-array>
+</resources>

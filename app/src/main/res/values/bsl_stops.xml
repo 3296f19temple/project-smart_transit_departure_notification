@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="bsl_stop_array">
+        <item>NRG Station</item>
+        <item>Oregon Station</item>
+        <item>Snyder Station</item>
+        <item>Tasker Morris Station</item>
+        <item>Ellsworth Federal Station</item>
+        <item>Lombard South Station</item>
+        <item>Walnut Locust Station</item>
+        <item>City Hall Station</item>
+        <item>Race Vine Station</item>
+        <item>Spring Garden Station</item>
+        <item>Fairmount Station</item>
+        <item>Girard Station</item>
+        <item>Cecil B Moore Station</item>
+        <item>Susquehanna Dauphin Station</item>
+        <item>North Philadelphia Station</item>
+        <item>Allegheny Station</item>
+        <item>Erie Station</item>
+        <item>Hunting Park Station</item>
+        <item>Wyoming Station</item>
+        <item>Logan Station</item>
+        <item>Olney Transportation Center</item>
+        <item>Fern Rock Transportation Center</item>
+    </string-array>
+</resources>

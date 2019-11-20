@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.net.MailTo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 public class bus_selector extends AppCompatActivity {
 
@@ -22,5 +24,15 @@ public class bus_selector extends AppCompatActivity {
                 startActivity(myIntent);
             }
         });
+
+        //populate spinner
+        Spinner spinner = (Spinner) findViewById(R.id.bus_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.bus_route_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        //populates from and to spinners based on original spinner choice
+        spinner.setOnItemSelectedListener(new SpinnerActivity(this));
     }
 }
