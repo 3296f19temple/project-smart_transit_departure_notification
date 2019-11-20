@@ -18,4 +18,274 @@
 
     <string name="to">To:</string>
     <string name="from">From:</string>
+
+    <string-array name="rail_lines">
+        <item>Airport Line</item>
+        <item>Chestnut Hill East</item>
+        <item>Chestnut Hill West</item>
+        <item>Cynwyd Line</item>
+        <item>Fox Chase Line</item>
+        <item>Landsdale/Doylestown Line</item>
+        <item>Manayunk/Norristown Line</item>
+        <item>Media/Elwyn Line</item>
+        <item>Paoli/Thorndale Line</item>
+        <item>Trenton Line</item>
+        <item>Warminster Line</item>
+        <item>West Trenton Line</item>
+        <item>Wilmington/Newark Line</item>
+    </string-array>
+    
+    <string-array name="air_stops">
+        <item>Temple University</item>
+        <item>Jefferson Station</item>
+        <item>Suburban Station</item>
+        <item>30th Street Station</item>
+        <item>University City</item>
+        <item>Eastwick</item>
+        <item>Airport Terminal A</item>
+        <item>Airport Terminal B</item>
+        <item>Airport Terminal C D</item>
+        <item>Airport Terminal E F</item>
+    </string-array>
+    
+    <string-array name="che_stops">
+        <item>Chestnut Hill East</item>
+        <item>Gravers</item>
+        <item>Wyndmoor</item>
+        <item>Mount Airy</item>
+        <item>Sedgwick</item>
+        <item>Stenton</item>
+        <item>Washington Lane</item>
+        <item>Germantown</item>
+        <item>Wister</item>
+        <item>Wayne Junction</item>
+        <item>Temple University</item>
+        <item>Jefferson Station</item>
+        <item>Suburban Station</item>
+        <item>30th Street Station</item>
+    </string-array>
+    
+    <string-array name="chw_stops">
+        <item>Temple University</item>
+        <item>Jefferson Station</item>
+        <item>Suburban Station</item>
+        <item>30th Street Station</item>
+        <item>North Philadelphia</item>
+        <item>Queen Lane</item>
+        <item>Chelten Avenue</item>
+        <item>Tulpehocken</item>
+        <item>Upsal</item>
+        <item>Carpenter</item>
+        <item>Allen Lane</item>
+        <item>St. Martins</item>
+        <item>Highland</item>
+        <item>Chestnut Hill West</item>
+    </string-array>
+    
+    <string-array name="cyn_stops">
+        <item>Suburban Station</item>
+        <item>30th Street Station</item>
+        <item>Wynnefield Avenue</item>
+        <item>Bala</item>
+        <item>Cynwyd</item>
+    </string-array>
+
+    <string-array name="fox_stops">
+        <item>Fox Chase</item>
+        <item>Ryers</item>
+        <item>Cheltenham</item>
+        <item>Lawndale</item>
+        <item>Olney</item>
+        <item>Temple University</item>
+        <item>Jefferson Station</item>
+        <item>Suburban Station</item>
+        <item>30th Street Station</item>
+    </string-array>
+
+    <string-array name="lan_stops">
+        <item>Doylestown</item>
+        <item>Delaware Valley College</item>
+        <item>New Britain</item>
+        <item>Chalfont</item>
+        <item>Link Belt</item>
+        <item>Colmar</item>
+        <item>Fortuna</item>
+        <item>9th Street Lansdale</item>
+        <item>Pennbrook</item>
+        <item>North Wales</item>
+        <item>Gwynedd Valley</item>
+        <item>Penllyn</item>
+        <item>Ambler</item>
+        <item>Fort Washington</item>
+        <item>Oreland</item>
+        <item>North Hills</item>
+        <item>Glenside</item>
+        <item>Jenkintown Wyncote</item>
+        <item>Melrose Park</item>
+        <item>Fern Rock TC</item>
+        <item>Wayne Junction</item>
+        <item>Temple University</item>
+        <item>Jefferson Station</item>
+        <item>Suburban Station</item>
+        <item>30th Street Station</item>
+        <item>University City</item>
+    </string-array>
+
+    <string-array name="nor_stops">
+        <item>Norristown - Elm Street</item>
+        <item>Main Street</item>
+        <item>Norristown TC</item>
+        <item>Conshohocken</item>
+        <item>Spring Mill</item>
+        <item>Miquon</item>
+        <item>Ivy Ridge</item>
+        <item>Manayunk</item>
+        <item>Wissahickon</item>
+        <item>East Falls</item>
+        <item>Allegheny</item>
+        <item>North Broad</item>
+        <item>Temple University</item>
+        <item>Jefferson Station</item>
+        <item>Suburban Station</item>
+        <item>30th Street Station</item>
+        <item>University Station</item>
+    </string-array>
+    
+    <string-array name="med_stops">
+        <item>Temple Station</item>
+        <item>Jefferson Station</item>
+        <item>Suburban Station</item>
+        <item>30th Street Station</item>
+        <item>University City</item>
+        <item>49th Street</item>
+        <item>Angora</item>
+        <item>Fernwood-Yeadon</item>
+        <item>Lansdowne</item>
+        <item>Gladstone</item>
+        <item>Clifton-Aldan</item>
+        <item>Primos</item>
+        <item>Secane</item>
+        <item>Morton-Rutledge</item>
+        <item>Swarthmore</item>
+        <item>Wallingford</item>
+        <item>Moylan-Rose Valley</item>
+        <item>Media</item>
+        <item>Elwyn</item>
+    </string-array>
+    
+    <string-array name="pao_stops">
+        <item>Temple University</item>
+        <item>Jefferson Station</item>
+        <item>Suburban Station</item>
+        <item>30th Street Station</item>
+        <item>Overbrook</item>
+        <item>Merion</item>
+        <item>Narberth</item>
+        <item>Wynnewood</item>
+        <item>Ardmore</item>
+        <item>Haverford</item>
+        <item>Bryn Mawr</item>
+        <item>Rosemont</item>
+        <item>Villanova</item>
+        <item>Radnor</item>
+        <item>St. Davids</item>
+        <item>Wayne</item>
+        <item>Strafford</item>
+        <item>Devon</item>
+        <item>Berwyn</item>
+        <item>Daylesford</item>
+        <item>Paoli</item>
+        <item>Malvern</item>
+        <item>Exton</item>
+        <item>Whitford</item>
+        <item>Downingtown</item>
+        <item>Thorndale</item>
+    </string-array>
+
+    <string-array name="tre_stops">
+        <item>Temple University</item>
+        <item>Jefferson Station</item>
+        <item>Suburban Station</item>
+        <item>30th Street Station</item>
+        <item>North Philadelphia Amtrak</item>
+        <item>Bridesburg</item>
+        <item>Tacony</item>
+        <item>Holmesburg Jct.</item>
+        <item>Torresdale</item>
+        <item>Cornwells Heights</item>
+        <item>Eddington</item>
+        <item>Croydon</item>
+        <item>Bristol</item>
+        <item>Levittown-Tullytown</item>
+        <item>Trenton</item>
+    </string-array>
+    
+    <string-array name="war_stops">
+        <item>Warminster</item>
+        <item>Hatboro</item>
+        <item>Willow Grove</item>
+        <item>Crestmont</item>
+        <item>Roslyn</item>
+        <item>Ardsley</item>
+        <item>Glenside</item>
+        <item>Jenkintown Wyncote</item>
+        <item>Elkins Park</item>
+        <item>Melrose Park</item>
+        <item>Fern Rock TC</item>
+        <item>Wayne Junction</item>
+        <item>Temple University</item>
+        <item>Suburban Station</item>
+        <item>30th Street Station</item>
+    </string-array>
+    
+    <string-array name="wtr_stops">
+        <item>West Trenton</item>
+        <item>Yardley</item>
+        <item>Woodbourne</item>
+        <item>Langhorne</item>
+        <item>Neshaminy</item>
+        <item>Trevose</item>
+        <item>Somerton</item>
+        <item>Forest Hills</item>
+        <item>Philmont</item>
+        <item>Bethayres</item>
+        <item>Meadowbrook</item>
+        <item>Rydal</item>
+        <item>Noble</item>
+        <item>Jenkintown Wyncote</item>
+        <item>Fern Rock TC</item>
+        <item>Wayne Junction</item>
+        <item>Temple University</item>
+        <item>Jefferson Station</item>
+        <item>Suburban Station</item>
+        <item>30th Street Station</item>
+        <item>University City</item>
+    </string-array>
+    
+    <string-array name="wil_stops">
+        <item>Temple Station</item>
+        <item>Jefferson Station</item>
+        <item>Suburban Station</item>
+        <item>30th Street Station</item>
+        <item>University City</item>
+        <item>Darby</item>
+        <item>Curtis Park</item>
+        <item>Sharon Hill</item>
+        <item>Folcroft</item>
+        <item>Glenolden</item>
+        <item>Norwood</item>
+        <item>Prospect Park - Moore</item>
+        <item>Ridley Park</item>
+        <item>Crum Lynne</item>
+        <item>Eddystone</item>
+        <item>Chester</item>
+        <item>Highland Avenue</item>
+        <item>Marcus Hook</item>
+        <item>Claymont</item>
+        <item>Willmington</item>
+        <item>Churchmans Crossing</item>
+        <item>Newark</item>
+    </string-array>
+
+
 </resources>
