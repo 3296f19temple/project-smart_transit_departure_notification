@@ -34,6 +34,6 @@ public class subway_selector extends AppCompatActivity {
         spinner.setAdapter(adapter);
 
         //populates from and to spinner based on original spinner choice
-        //spinner.setOnItemSelectedListener(new SpinnerActivity());
+        spinner.setOnItemSelectedListener(new SubwaySpinnerActivity(this));
     }
 }
