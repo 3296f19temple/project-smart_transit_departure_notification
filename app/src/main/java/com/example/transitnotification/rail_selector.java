@@ -15,12 +15,18 @@ import android.widget.SpinnerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class rail_selector extends AppCompatActivity {
+public class rail_selector extends AppCompatActivity implements TimeInterface {
+
+    String line_selected_global = null;
+    String from_stop_global = null;
+    TimeSlave t;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rail_selector);
+
+        t = new TimeSlave();
 
         ImageView logo_img = (ImageView) findViewById(R.id.app_logo);
         logo_img.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +47,7 @@ public class rail_selector extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String line_selected = (String) line_adapter.getItem(position);
+                line_selected_global = line_selected;
                 String[] lines = getResources().getStringArray(R.array.rail_lines);
                 String[] from_array = null;
 
@@ -105,6 +112,7 @@ public class rail_selector extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String from_selected = (String) from_adapter.getItem(position);
+                from_stop_global = from_selected;
 
                 //String[] to_array = PopulateToStringArray(from_array, from_selected);
                 PopulateToSpinner(from_array, from_selected);
@@ -146,7 +154,7 @@ public class rail_selector extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 //An item was selected. We retrieve the selected item using
                 String toStop = (String) parent.getItemAtPosition(pos);
-                new RetrieveRailTimesTask().execute(fromStop, toStop);
+                new RetrieveRailTimesTask(t).execute(fromStop, toStop);
             }
 
             @Override
@@ -154,5 +162,20 @@ public class rail_selector extends AppCompatActivity {
 
             }
         });
+    }
+    
+    public void getArrivalTime(String time) {
+        Intent notificationIntent = new Intent(rail_selector.this, NotificationService.class);
+        Bundle extras = new Bundle();
+        extras.putString("ROUTE", line_selected_global);
+        extras.putString("DIRECTION", "Southbound/Northbound");
+        extras.putString("STATION", from_stop_global);
+
+        // TODO public String getTime(String route, String direction, String station)
+        extras.putString("TIME", t.time);
+
+        notificationIntent.putExtras(extras);
+
+        startService(notificationIntent);
     }
 }

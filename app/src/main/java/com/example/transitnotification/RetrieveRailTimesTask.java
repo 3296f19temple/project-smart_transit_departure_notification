@@ -1,7 +1,9 @@
 package com.example.transitnotification;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -25,16 +27,17 @@ public class RetrieveRailTimesTask extends AsyncTask<String, Void, String> {
 
     private Exception exception;
     //public AppCompatActivity anActivity;
+    TimeSlave t;
 
-    //public RetrieveRailTimesTask(AppCompatActivity a) {
-    //    anActivity = a;
-    //}
+    public RetrieveRailTimesTask(TimeSlave a) {
+        t = a;
+    }
 
     protected String doInBackground(String... urls) {
 
         try {
             //connect to api endpoint
-            URL url = new URL("http://www3.septa.org/hackathon/NextToArrive/" + urls[0] + "/" + urls[1]);
+            URL url = new URL("http://www3.septa.org/hackathon/NextToArrive/Temple%20University/University%20City");
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
             //put information into a string variable: line
@@ -77,8 +80,10 @@ public class RetrieveRailTimesTask extends AsyncTask<String, Void, String> {
             String time = stop.getString("orig_arrival_time");
 
             //TODO: Handle time variable
+            Log.d("ASYNCTASK", "time = "+time);
+            t.time = time;
 
-        } catch (JSONException e) {
+        } catch (JSONException | ClassCastException f) {
             // Appropriate error handling code
         }
 
