@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         txtLat = (TextView) findViewById(R.id.textview1);
         txtLat.setText("N/A");
         LaunchLocationUpdates();
+
         //Anonymous on click function that redirects to the bus selector activity
         /*
         ImageView bus_img = (ImageView) findViewById(R.id.bus_icon);

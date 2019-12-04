@@ -24,6 +24,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class favorites extends AppCompatActivity {
@@ -103,20 +104,39 @@ public class favorites extends AppCompatActivity {
                 try {
                     /* File myFile = new File(Environment.getExternalStorageDirectory().getPath()+"/fave_stops.txt"); */
                     File file = new File(getApplicationContext().getFilesDir(), "fave_stops.txt");
+                    boolean is_inside = false;
 
                     if (!file.exists()) {
                         file.createNewFile();
                     }
 
-                    try {
-                        FileWriter writer = new FileWriter(file, true);
-                        writer.write(fave + "\n");
-                        writer.flush();
-                        writer.close();
+                    Scanner check_for_duplicate = new Scanner(file);
 
-                    } catch (Exception e) {
-                        Log.i("FAVE ADD CATCH1: ", fave);
-                        e.printStackTrace();
+                    while(check_for_duplicate.hasNextLine()){
+                        String line = check_for_duplicate.nextLine();
+                        if(line.equals(fave))
+                        {
+                            is_inside = true;
+                        }
+                    }
+
+                    if(is_inside)
+                    {
+                        Log.i("ALREADY FAVE: ", fave);
+                    }
+                    else
+                    {
+                        try {
+                            Log.i("WRITE TO FILE: ", fave);
+                            FileWriter writer = new FileWriter(file, true);
+                            writer.write(fave + "\n");
+                            writer.flush();
+                            writer.close();
+
+                        } catch (Exception e) {
+                            Log.i("FAVE ADD CATCH1: ", fave);
+                            e.printStackTrace();
+                        }
                     }
                 }
                 catch (Exception e) {
