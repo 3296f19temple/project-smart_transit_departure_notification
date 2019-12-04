@@ -6,18 +6,28 @@
 
     <string name="header_bar">teal_header</string>
 
+    //ICON LABELS
     <string name="bus_icon">bus_icon</string>
     <string name="subway_icon">subway_icon</string>
     <string name="rail_icon">rail_icon</string>
     <string name="favorites_icon">favorites_icon</string>
 
+    //PAGE LABELS
     <string name="bus_title">Bus Schedule</string>
     <string name="subway_title">Subway Schedule</string>
     <string name="rail_title">Regional Rail Schedule</string>
     <string name="favorites_title">Favorites</string>
 
+
+    //LABELS
     <string name="to">To:</string>
     <string name="from">From:</string>
+    <string name="direction">Direction:</string>
+    <string name="type">Type:</string>
+    <string name="line_name">Line Name:</string>
+    <string name="station_name">Station Name:</string>
+
+    <string name="fave_button">Add Favorite</string>
 
     <string-array name="rail_lines">
         <item>Airport Line</item>
@@ -285,6 +295,21 @@
         <item>Willmington</item>
         <item>Churchmans Crossing</item>
         <item>Newark</item>
+    </string-array>
+
+    <string-array name="glen_stops">
+        <item>Glenside</item>
+        <item>Jenkintown-Wyncote</item>
+        <item>Elkins Park</item>
+        <item>Melrose Park</item>
+        <item>Fern Rock Transportation Center</item>
+        <item>Wayne Junction</item>
+        <item>North Broad</item>
+        <item>Temple University</item>
+        <item>Jefferson Station</item>
+        <item>Suburban Station</item>
+        <item>30th Street Station</item>
+        <item>University City</item>
     </string-array>
 
 
