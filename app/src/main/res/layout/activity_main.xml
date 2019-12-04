@@ -49,14 +49,14 @@
             android:orientation="horizontal"
             tools:layout_editor_absoluteX="0dp">
 
-            <!--Bus button-->
-            <ImageView
-                android:id="@+id/bus_icon"
-                android:layout_width="0dp"
-                android:layout_height="215dp"
-                android:layout_weight="1"
-                android:contentDescription="@string/bus_icon"
-                app:srcCompat="@drawable/selector_frame_bus" />
+<!--            &lt;!&ndash;Bus button&ndash;&gt;-->
+<!--            <ImageView-->
+<!--                android:id="@+id/bus_icon"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="215dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:contentDescription="@string/bus_icon"-->
+<!--                app:srcCompat="@drawable/selector_frame_bus" />-->
 
             <!--Subway button-->
             <ImageView
@@ -66,6 +66,14 @@
                 android:layout_weight="1"
                 android:contentDescription="@string/subway_icon"
                 app:srcCompat="@drawable/selector_frame_subway" />
+
+            <ImageView
+                android:id="@+id/rail_icon"
+                android:layout_width="0dp"
+                android:layout_height="215dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/rail_icon"
+                app:srcCompat="@drawable/selector_frame_rail" />
 
         </LinearLayout>
 
@@ -79,13 +87,7 @@
             tools:layout_editor_absoluteX="0dp">
 
             <!-- Regional Rail button-->
-            <ImageView
-                android:id="@+id/rail_icon"
-                android:layout_width="0dp"
-                android:layout_height="215dp"
-                android:layout_weight="1"
-                android:contentDescription="@string/rail_icon"
-                app:srcCompat="@drawable/selector_frame_rail" />
+
 
             <!--Favorite button-->
             <ImageView

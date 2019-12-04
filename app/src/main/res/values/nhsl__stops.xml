@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="nhsl_stop_array">
+        <item>Norristown Transportation Center</item>
+        <item>Bridgeport</item>
+        <item>DeKalb St</item>
+        <item>Hughes Park</item>
+        <item>Gulph Mills</item>
+        <item>Matsonford</item>
+        <item>County Line</item>
+        <item>Radnor</item>
+        <item>Villanova</item>
+        <item>Stadium</item>
+        <item>Garrett Hill</item>
+        <item>Roberts Rd</item>
+        <item>Bryn Mawr</item>
+        <item>Haverford</item>
+        <item>Ardmore Ave</item>
+        <item>Ardmore Jct</item>
+        <item>Wynnewood Rd</item>
+        <item>Beechwood-Brookline</item>
+        <item>Penfield</item>
+        <item>Township Line Rd</item>
+        <item>Parkview</item>
+        <item>69th Street Transportation Center</item>
+    </string-array>
+</resources>
