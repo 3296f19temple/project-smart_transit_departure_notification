@@ -107,7 +107,7 @@ public class rail_selector extends AppCompatActivity {
                 String from_selected = (String) from_adapter.getItem(position);
 
                 //String[] to_array = PopulateToStringArray(from_array, from_selected);
-                PopulateToSpinner(from_array);
+                PopulateToSpinner(from_array, from_selected);
             }
 
             @Override
@@ -133,17 +133,20 @@ public class rail_selector extends AppCompatActivity {
         return to_array;
     }
 
-    private void PopulateToSpinner(String[] to_array) {
+    private void PopulateToSpinner(String[] to_array, final String fromStop) {
 
         Spinner to_spinner = (Spinner) findViewById(R.id.to_spinner);
         ArrayAdapter<String> to_adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, to_array);
         to_spinner.setAdapter((SpinnerAdapter) to_adapter);
 
+        //TODO: Change below to buttonListener
         to_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // TODO: call next activity
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                //An item was selected. We retrieve the selected item using
+                String toStop = (String) parent.getItemAtPosition(pos);
+                new RetrieveRailTimesTask().execute(fromStop, toStop);
             }
 
             @Override
