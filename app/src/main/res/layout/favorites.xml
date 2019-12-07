@@ -113,28 +113,47 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content" />
 
-                <Button
-                    android:id="@+id/fave_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/fave_button" />
-
             </LinearLayout>
         </LinearLayout>
 
-        <!--Horizontal layout of second row-->
-        <LinearLayout
+    <LinearLayout
+        android:id="@+id/buttonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="0dp">
 
+        <Button
+            android:id="@+id/fave_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:orientation="horizontal"
+            android:text="@string/fave_button" />
+
+        <Button
+            android:id="@+id/delete_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/delete_button" />
+
+
+    </LinearLayout>
+
+        <!--Vertical layout of second row-->
+        <LinearLayout
+
+            android:id="@+id/favorites_holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
             tools:layout_editor_absoluteX="0dp">
 
         </LinearLayout>
-
 
     </LinearLayout>
 

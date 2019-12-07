@@ -21,10 +21,15 @@ public class SubwaySpinnerActivity extends Activity implements AdapterView.OnIte
         //get route_id and pass it to method that will call api
 
         int res;
-        if (choice.equals("Broad Street Line"))
+        if (choice.equals("Broad Street Line")) {
             res = R.array.bsl_stop_array;
-        else
+        }
+        else if(choice.equals("Norristown High Speed Line")) {
+            res = R.array.nhsl_stop_array;
+        }
+        else {
             res = R.array.mfl_stop_array;
+        }
 
         Spinner frmSpinner = (Spinner) anActivity.findViewById(R.id.from_spinner);
         Spinner toSpinner = (Spinner) anActivity.findViewById(R.id.to_spinner);

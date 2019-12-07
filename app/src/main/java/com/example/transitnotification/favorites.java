@@ -14,12 +14,18 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -29,6 +35,7 @@ import java.util.StringTokenizer;
 
 public class favorites extends AppCompatActivity {
 
+    private Button delete_fave_button;
     private Button add_fave_button;
     String yourFileName = "fave_stops.txt";
 
@@ -67,11 +74,113 @@ public class favorites extends AppCompatActivity {
         return fave_stops;
     }
 
+    public void deleteFavorite(String lineToRemove)
+    {
+        File inputFile = new File(getApplicationContext().getFilesDir(), "fave_stops.txt");
+        File tempFile = new File(getApplicationContext().getFilesDir(),"myTempFile.txt");
+
+        try {
+            boolean is_inside_for_deletion = false;
+            Scanner check_for_duplicate = new Scanner(inputFile);
+
+            while(check_for_duplicate.hasNextLine()){
+                String line = check_for_duplicate.nextLine();
+                if(line.equals(lineToRemove))
+                {
+                    is_inside_for_deletion = true;
+                }
+            }
+
+            if(is_inside_for_deletion) //if there to delete
+            {
+
+                BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+                BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+                String currentLine;
+
+                while((currentLine = reader.readLine()) != null)
+                {
+
+                    // trim newline when comparing with lineToRemove
+                    String trimmedLine = currentLine.trim();
+
+                    if(trimmedLine.equals(lineToRemove)) continue;
+
+                    writer.write(currentLine + System.getProperty("line.separator"));
+                }
+
+                writer.close();
+                reader.close();
+
+                boolean successful = tempFile.renameTo(inputFile);
+
+                Log.i("SUCCESS", successful + " - DELETION - " + lineToRemove + " deleted from fave_stops.txt");
+            }
+            else
+            {
+                Log.i("NOT DELETED", "No need for deletion; station is not inside file.");
+            }
+        }
+
+        catch (FileNotFoundException e)
+        {
+            Log.i("FILE EXCEPTION", "File not found exception.");
+        }
+        catch (IOException e) {
+            Log.i("IO EXCEPTION", "IO exception.");
+        }
+    }
+
+    public void populateFavorites()
+    {
+        LinearLayout favorites_holder = (LinearLayout) findViewById(R.id.favorites_holder);
+
+        //parent
+        ScrollView scroller = new ScrollView(getApplicationContext());
+
+        //child that holds textviews
+        LinearLayout scroll_holder = new LinearLayout(getApplicationContext());
+        //scroll_holder.setOrientation(LinearLayout.VERTICAL);
+
+        String[] favorites = getFavorites();
+        int iterator;
+
+        for(iterator = 0; iterator < favorites.length; iterator++)
+        {
+            TextView favorite = new TextView(getApplicationContext());
+
+            Log.i("SS: ", makeFaveCard(favorites[iterator]));
+            favorite.setText(makeFaveCard(favorites[iterator]));
+
+            scroll_holder.addView(favorite);
+        }
+
+        scroller.addView(scroll_holder);
+        favorites_holder.addView(scroller);
+
+    }
+
+    public String makeFaveCard(String station)
+    {
+        String station_string = "";
+
+        //append all station information to card
+        //name
+        station_string = station_string.concat(station + "\n");
+
+        //time
+        station_string = station_string.concat("Next train arrives at " + "placeholder" + "\n");
+
+        return station_string;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.favorites);
         String[] favorite_stops = getFavorites();
+        populateFavorites();
 
         ImageView logo_img = (ImageView) findViewById(R.id.app_logo);
         logo_img.setOnClickListener(new View.OnClickListener() {
@@ -147,6 +256,28 @@ public class favorites extends AppCompatActivity {
                 Log.i("AFTER ADD: ", fave);
             }
         });
+
+        delete_fave_button = findViewById(R.id.delete_button);
+        delete_fave_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Spinner favorite_station_spinner = (Spinner) findViewById(R.id.favorite_station_spinner);
+                String fave = favorite_station_spinner.getSelectedItem().toString();
+
+                //Log.i("FAVE: ", fave);
+
+                try {
+                    deleteFavorite(fave);
+                }
+                catch (Exception e) {
+                    Log.i("Delete", "ONCLICK delete catch");
+                    e.printStackTrace();
+                }
+
+                Log.i("AFTER DELETE: ", "Deleted");
+            }
+        });
     }
 
     //used to dynamically respond when selecting item: can be used on ALL spinners
@@ -160,7 +291,7 @@ public class favorites extends AppCompatActivity {
             Log.i("Selected", selected);
 
             // ### LINE NAME SPINNER POPULATION BEGINS ###
-            
+
             switch(selected)
             {
                 // ### LINE NAME SPINNER POPULATION BEGINS ###
@@ -189,7 +320,7 @@ public class favorites extends AppCompatActivity {
                 // ### STATION SPINNER POPULATION BEGINS ###
 
                 //SUBWAY
-                 case("Broad Street Line"):
+                case("Broad Street Line"):
                     //favorite_station_spinner
                     Log.i("BSL SHOULD FILL: ", selected);
                     Spinner bsl_spinner = (Spinner) findViewById(R.id.favorite_station_spinner);
@@ -218,7 +349,7 @@ public class favorites extends AppCompatActivity {
                     nhsl_spinner.setAdapter(nhsl_adapter);
                     break;
 
-                //REGIONAL RAIL TODO: GET STATIONS ON LINES
+                //REGIONAL RAIL
                 case("Airport Line"):
                     Log.i("APORT LINE SH'LD FILL: ", selected);
                     Spinner aportl_spinner = (Spinner) findViewById(R.id.favorite_station_spinner);
@@ -352,8 +483,6 @@ public class favorites extends AppCompatActivity {
             }
 
         }
-
-
 
         public void onNothingSelected(AdapterView parent) {
             // Do nothing.
