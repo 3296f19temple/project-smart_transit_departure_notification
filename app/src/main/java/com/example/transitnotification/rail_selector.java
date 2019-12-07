@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
@@ -100,6 +101,14 @@ public class rail_selector extends AppCompatActivity {
             }
         });
 
+        Button goButton = findViewById(R.id.goBtn);
+        goButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new RetrieveRailTimesTask(rail_selector.this).execute(from_stop_global, to_stop_global);
+            }
+        });
+
     }
 
     private void PopulateFromSpinner(final String[] from_array) {
@@ -155,7 +164,6 @@ public class rail_selector extends AppCompatActivity {
                 //An item was selected. We retrieve the selected item using
                 String toStop = (String) parent.getItemAtPosition(pos);
                 to_stop_global = toStop;
-                new RetrieveRailTimesTask(rail_selector.this).execute(fromStop, toStop);
             }
 
             @Override

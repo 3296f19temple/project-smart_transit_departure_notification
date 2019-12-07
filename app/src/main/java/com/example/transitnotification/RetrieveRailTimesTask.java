@@ -34,8 +34,9 @@ public class RetrieveRailTimesTask extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... urls) {
 
         try {
-            //connect to api endpoint
-            URL url = new URL("http://www3.septa.org/hackathon/NextToArrive/" + urls[0] + "/" + urls[1]);
+            //connect to api endpoints
+            URL url = new URL("http://www3.septa.org/hackathon/NextToArrive/" +
+                    urls[0].replace(" ", "%20") + "/" + urls[1].replace(" ", "%20"));
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
             //put information into a string variable: line
