@@ -91,37 +91,37 @@ public class favorites extends AppCompatActivity {
                 }
             }
 
-           if(is_inside_for_deletion) //if there to delete
-           {
+            if(is_inside_for_deletion) //if there to delete
+            {
 
-               BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-               BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+                BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+                BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
 
-               String currentLine;
+                String currentLine;
 
-               while((currentLine = reader.readLine()) != null)
-               {
+                while((currentLine = reader.readLine()) != null)
+                {
 
-                   // trim newline when comparing with lineToRemove
-                   String trimmedLine = currentLine.trim();
+                    // trim newline when comparing with lineToRemove
+                    String trimmedLine = currentLine.trim();
 
-                   if(trimmedLine.equals(lineToRemove)) continue;
+                    if(trimmedLine.equals(lineToRemove)) continue;
 
-                   writer.write(currentLine + System.getProperty("line.separator"));
-               }
+                    writer.write(currentLine + System.getProperty("line.separator"));
+                }
 
-               writer.close();
-               reader.close();
+                writer.close();
+                reader.close();
 
-               boolean successful = tempFile.renameTo(inputFile);
+                boolean successful = tempFile.renameTo(inputFile);
 
-               Log.i("SUCCESS", successful + " - DELETION - " + lineToRemove + " deleted from fave_stops.txt");
-           }
-           else
-           {
-               Log.i("NOT DELETED", "No need for deletion; station is not inside file.");
-           }
-           }
+                Log.i("SUCCESS", successful + " - DELETION - " + lineToRemove + " deleted from fave_stops.txt");
+            }
+            else
+            {
+                Log.i("NOT DELETED", "No need for deletion; station is not inside file.");
+            }
+        }
 
         catch (FileNotFoundException e)
         {
@@ -136,7 +136,10 @@ public class favorites extends AppCompatActivity {
     {
         LinearLayout favorites_holder = (LinearLayout) findViewById(R.id.favorites_holder);
 
+        //parent
         ScrollView scroller = new ScrollView(getApplicationContext());
+
+        //child that holds textviews
         LinearLayout scroll_holder = new LinearLayout(getApplicationContext());
         //scroll_holder.setOrientation(LinearLayout.VERTICAL);
 
@@ -288,7 +291,7 @@ public class favorites extends AppCompatActivity {
             Log.i("Selected", selected);
 
             // ### LINE NAME SPINNER POPULATION BEGINS ###
-            
+
             switch(selected)
             {
                 // ### LINE NAME SPINNER POPULATION BEGINS ###
@@ -317,7 +320,7 @@ public class favorites extends AppCompatActivity {
                 // ### STATION SPINNER POPULATION BEGINS ###
 
                 //SUBWAY
-                 case("Broad Street Line"):
+                case("Broad Street Line"):
                     //favorite_station_spinner
                     Log.i("BSL SHOULD FILL: ", selected);
                     Spinner bsl_spinner = (Spinner) findViewById(R.id.favorite_station_spinner);
