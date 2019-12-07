@@ -64,41 +64,6 @@
 
         </LinearLayout>
 
-        <!--direction-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginTop="20dp"
-
-            android:orientation="horizontal"
-            tools:layout_editor_absoluteX="0dp">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/directionText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:text="@string/direction"
-                    android:textAlignment="textStart"
-                    android:textSize="14sp" />
-
-                <Spinner
-                    android:id="@+id/direction_spinner"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-        </LinearLayout>
-
         <!--from-->
         <LinearLayout
             android:layout_width="match_parent"

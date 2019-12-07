@@ -28,6 +28,7 @@
     <string name="station_name">Station Name:</string>
 
     <string name="fave_button">Add Favorite</string>
+    <string name="delete_button">Delete Favorite</string>
 
     <string-array name="rail_lines">
         <item>Airport Line</item>
