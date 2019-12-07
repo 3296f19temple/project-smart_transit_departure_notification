@@ -15,18 +15,18 @@ import android.widget.SpinnerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class rail_selector extends AppCompatActivity implements TimeInterface {
+public class rail_selector extends AppCompatActivity {
 
     String line_selected_global = null;
     String from_stop_global = null;
-    TimeSlave t;
+    String to_stop_global = null;
+    public static String time;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rail_selector);
-
-        t = new TimeSlave();
 
         ImageView logo_img = (ImageView) findViewById(R.id.app_logo);
         logo_img.setOnClickListener(new View.OnClickListener() {
@@ -154,7 +154,8 @@ public class rail_selector extends AppCompatActivity implements TimeInterface {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 //An item was selected. We retrieve the selected item using
                 String toStop = (String) parent.getItemAtPosition(pos);
-                new RetrieveRailTimesTask(t).execute(fromStop, toStop);
+                to_stop_global = toStop;
+                new RetrieveRailTimesTask(rail_selector.this).execute(fromStop, toStop);
             }
 
             @Override
@@ -163,18 +164,21 @@ public class rail_selector extends AppCompatActivity implements TimeInterface {
             }
         });
     }
-    
-    public void getArrivalTime(String time) {
+
+    public void getArrivalTime() {
+
+        Log.d("rail_selector", "enter getArrivalTime()");
+
         Intent notificationIntent = new Intent(rail_selector.this, NotificationService.class);
         Bundle extras = new Bundle();
         extras.putString("ROUTE", line_selected_global);
-        extras.putString("DIRECTION", "Southbound/Northbound");
-        extras.putString("STATION", from_stop_global);
-
-        // TODO public String getTime(String route, String direction, String station)
-        extras.putString("TIME", t.time);
+        extras.putString("TO", to_stop_global);
+        extras.putString("FROM", from_stop_global);
+        extras.putString("TIME", time);
 
         notificationIntent.putExtras(extras);
+
+        Log.d("rail_selector", "Created intent and bundle");
 
         startService(notificationIntent);
     }

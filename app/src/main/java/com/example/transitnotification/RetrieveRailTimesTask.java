@@ -25,19 +25,17 @@ import java.util.Iterator;
 //RetrieveFeedTask calls API in background via asynchronous thread
 public class RetrieveRailTimesTask extends AsyncTask<String, Void, String> {
 
-    private Exception exception;
-    //public AppCompatActivity anActivity;
-    TimeSlave t;
+    rail_selector RailSelectorActivity;
 
-    public RetrieveRailTimesTask(TimeSlave a) {
-        t = a;
+    public RetrieveRailTimesTask(rail_selector a) {
+        RailSelectorActivity = a;
     }
 
     protected String doInBackground(String... urls) {
 
         try {
             //connect to api endpoint
-            URL url = new URL("http://www3.septa.org/hackathon/NextToArrive/Temple%20University/University%20City");
+            URL url = new URL("http://www3.septa.org/hackathon/NextToArrive/" + urls[0] + "/" + urls[1]);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
             //put information into a string variable: line
@@ -65,7 +63,6 @@ public class RetrieveRailTimesTask extends AsyncTask<String, Void, String> {
         if(response == null) {
             response = "THERE WAS AN ERROR";
         }
-        Log.i("INFO", response);
 
         //a list where we'll keep the stop names we'll use to populate the above spinners
         ArrayList<String> stopnames = new ArrayList<String>();
@@ -81,7 +78,9 @@ public class RetrieveRailTimesTask extends AsyncTask<String, Void, String> {
 
             //TODO: Handle time variable
             Log.d("ASYNCTASK", "time = "+time);
-            t.time = time;
+            rail_selector.time = time;
+            RailSelectorActivity.getArrivalTime();
+
 
         } catch (JSONException | ClassCastException f) {
             // Appropriate error handling code
@@ -89,5 +88,6 @@ public class RetrieveRailTimesTask extends AsyncTask<String, Void, String> {
 
 
     }
+
 }
 
