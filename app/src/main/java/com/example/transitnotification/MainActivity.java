@@ -21,12 +21,12 @@ import android.util.Log;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
     // THIS SHOULD BE IN A DIFFERENT PLACE THAT STORES GLOBAL VARIABLES
-    public static final int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 100;
+    public static final int REQUEST_FINE_LOCATION = 100;
     protected  LocationManager locationManager;
-    double latitude = -1, longitude = -1;
+    public static double latitude = -1, longitude = -1;
+    RetrieveNearestStation nearestStation = new RetrieveNearestStation();
     TextView txtLat;
-
-
+    public static String nearestStationInfo;
     // Storage Permissions
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
@@ -38,13 +38,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         setContentView(R.layout.activity_main);
         verifyStoragePermissions(this);
-        txtLat = (TextView) findViewById(R.id.textview1);
-        txtLat.setText("N/A");
+        txtLat = (TextView) findViewById(R.id.curLocation);
         LaunchLocationUpdates();
-
+      
         //Anonymous on click function that redirects to the bus selector activity
         /*
         ImageView bus_img = (ImageView) findViewById(R.id.bus_icon);
@@ -91,11 +89,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             // Permission is not granted, request it
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    MY_PERMISSIONS_REQUEST_FINE_LOCATION);
+                    REQUEST_FINE_LOCATION);
             // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an app-defined int constant.
             // The callback method gets the result of the requests
         } else {
             // Permission has already been granted
+            Log.i("Location", "Location Permission Previously Granted");
             StartLocationUpdates();
         }
     }
@@ -109,10 +108,15 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
     @Override
     public void onLocationChanged(Location location) {
-        txtLat = (TextView) findViewById(R.id.textview1);
+        txtLat = (TextView) findViewById(R.id.curLocation);
         latitude = location.getLatitude();
         longitude = location.getLongitude();
         txtLat.setText("Latitude:" + latitude + ", Longitude:" + longitude);
+        RetrieveNearestStation nearestStation = new RetrieveNearestStation();
+        if(!nearestStation.executing) {
+            nearestStation.execute(longitude, latitude);
+        }
+
     }
     @Override
     public void onProviderDisabled(String provider) {
@@ -130,20 +134,16 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     public void onRequestPermissionsResult(int requestCode,
                                            String[] permissions, int[] grantResults) {
         switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_FINE_LOCATION: {
+            case REQUEST_FINE_LOCATION: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // permission was granted, yay!
-                    txtLat = (TextView) findViewById(R.id.textview1);
-                    txtLat.setText("Location Permission Granted.");
+                    Log.i("Location", "Location Permission Granted");
                     StartLocationUpdates();
-
-
                 } else {
                     // permission denied,
-                    txtLat = (TextView) findViewById(R.id.textview1);
-                    txtLat.setText("Location Permission Denied.");
+                    Log.i("Location", "Location Permission Denied");
                 }
                 return;
             }
