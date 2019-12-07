@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
@@ -16,6 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class rail_selector extends AppCompatActivity {
+
+    String line_selected_global = null;
+    String from_stop_global = null;
+    String to_stop_global = null;
+    public static String time;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +48,7 @@ public class rail_selector extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String line_selected = (String) line_adapter.getItem(position);
+                line_selected_global = line_selected;
                 String[] lines = getResources().getStringArray(R.array.rail_lines);
                 String[] from_array = null;
 
@@ -93,6 +101,14 @@ public class rail_selector extends AppCompatActivity {
             }
         });
 
+        Button goButton = findViewById(R.id.goBtn);
+        goButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new RetrieveRailTimesTask(rail_selector.this).execute(from_stop_global, to_stop_global);
+            }
+        });
+
     }
 
     private void PopulateFromSpinner(final String[] from_array) {
@@ -105,9 +121,10 @@ public class rail_selector extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String from_selected = (String) from_adapter.getItem(position);
+                from_stop_global = from_selected;
 
                 //String[] to_array = PopulateToStringArray(from_array, from_selected);
-                PopulateToSpinner(from_array);
+                PopulateToSpinner(from_array, from_selected);
             }
 
             @Override
@@ -133,17 +150,20 @@ public class rail_selector extends AppCompatActivity {
         return to_array;
     }
 
-    private void PopulateToSpinner(String[] to_array) {
+    private void PopulateToSpinner(String[] to_array, final String fromStop) {
 
         Spinner to_spinner = (Spinner) findViewById(R.id.to_spinner);
         ArrayAdapter<String> to_adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, to_array);
         to_spinner.setAdapter((SpinnerAdapter) to_adapter);
 
+        //TODO: Change below to buttonListener
         to_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // TODO: call next activity
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                //An item was selected. We retrieve the selected item using
+                String toStop = (String) parent.getItemAtPosition(pos);
+                to_stop_global = toStop;
             }
 
             @Override
@@ -151,5 +171,23 @@ public class rail_selector extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void getArrivalTime() {
+
+        Log.d("rail_selector", "enter getArrivalTime()");
+
+        Intent notificationIntent = new Intent(rail_selector.this, NotificationService.class);
+        Bundle extras = new Bundle();
+        extras.putString("ROUTE", line_selected_global);
+        extras.putString("TO", to_stop_global);
+        extras.putString("FROM", from_stop_global);
+        extras.putString("TIME", time);
+
+        notificationIntent.putExtras(extras);
+
+        Log.d("rail_selector", "Created intent and bundle");
+
+        startService(notificationIntent);
     }
 }
