@@ -42,9 +42,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         verifyStoragePermissions(this);
         txtLat = (TextView) findViewById(R.id.curLocation);
         LaunchLocationUpdates();
-
-        // Longitude, latitude
-
+      
         //Anonymous on click function that redirects to the bus selector activity
         /*
         ImageView bus_img = (ImageView) findViewById(R.id.bus_icon);
