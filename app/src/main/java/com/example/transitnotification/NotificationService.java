@@ -144,7 +144,6 @@ public class NotificationService extends IntentService {
     }
 
     public void createNotification(String route, String to, String from, int minutes){
-
         final String CHANNEL_ID = "push_notifications";
         int NOTIFICATION_ID = 001;
         Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -155,7 +154,8 @@ public class NotificationService extends IntentService {
                 0, fullscreenIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         // build notification
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,
+                App.CHANNEL_ID);
         builder.setSmallIcon(R.drawable.ic_directions_subway_black_24dp);
         builder.setContentTitle("SmartTransit");
 
