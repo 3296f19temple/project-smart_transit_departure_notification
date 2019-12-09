@@ -131,6 +131,8 @@ public class favorites extends AppCompatActivity {
 
     public void populateFavorites(String time)
     {
+
+        adapter.clear();
         String[] favorites = getFavorites();
         int iterator;
 
@@ -173,7 +175,7 @@ public class favorites extends AppCompatActivity {
 
         adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, list_for_table);
 
-        ListView listView = (ListView) findViewById(R.id.stations_list);
+        final ListView listView = (ListView) findViewById(R.id.stations_list);
         listView.setAdapter(adapter);
 
         //populateFavorites();
@@ -254,6 +256,14 @@ public class favorites extends AppCompatActivity {
                 Spinner favorite_station_spinner = (Spinner) findViewById(R.id.favorite_station_spinner);
                 String fave = favorite_station_spinner.getSelectedItem().toString();
 
+                for(int y = 0; y< list_for_table.size(); y++)
+                {
+                    if((list_for_table.get(y)).contains(fave))
+                    {
+                        list_for_table.remove(y);
+                    }
+                }
+                adapter.notifyDataSetChanged();
                 //Log.i("FAVE: ", fave);
 
                 try {
