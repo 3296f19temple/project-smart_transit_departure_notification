@@ -1,38 +1,29 @@
 package com.example.transitnotification;
 
-import androidx.appcompat.app.AlertDialog;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActionBar;
-import android.content.Context;
-import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -145,8 +136,8 @@ public class favorites extends AppCompatActivity {
 
         for(iterator = 0; iterator < favorites.length; iterator++)
         {
-            Log.i("SS: ", makeFaveCard(favorites[iterator]));
-            adapter.add(makeFaveCard(favorites[iterator]));
+            Log.i("SS: ", makeFaveCard(favorites[iterator], time));
+            adapter.add(makeFaveCard(favorites[iterator], time));
         }
 
     }
@@ -185,7 +176,7 @@ public class favorites extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.stations_list);
         listView.setAdapter(adapter);
 
-        populateFavorites();
+        //populateFavorites();
 
         //populate spinner with different line types: Rail, Bus, Subway
         Spinner type_spinner = (Spinner) findViewById(R.id.favorite_type_spinner);
