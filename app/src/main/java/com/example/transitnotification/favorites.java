@@ -132,7 +132,7 @@ public class favorites extends AppCompatActivity {
         }
     }
 
-    public void populateFavorites()
+    public void populateFavorites(String time)
     {
         LinearLayout favorites_holder = (LinearLayout) findViewById(R.id.favorites_holder);
 
@@ -150,18 +150,17 @@ public class favorites extends AppCompatActivity {
         {
             TextView favorite = new TextView(getApplicationContext());
 
-            Log.i("SS: ", makeFaveCard(favorites[iterator]));
-            favorite.setText(makeFaveCard(favorites[iterator]));
+            Log.i("SS: ", makeFaveCard(favorites[iterator], time));
+            favorite.setText(makeFaveCard(favorites[iterator], time));
 
             scroll_holder.addView(favorite);
         }
 
         scroller.addView(scroll_holder);
         favorites_holder.addView(scroller);
-
     }
 
-    public String makeFaveCard(String station)
+    public String makeFaveCard(String station, String time)
     {
         String station_string = "";
 
@@ -170,7 +169,7 @@ public class favorites extends AppCompatActivity {
         station_string = station_string.concat(station + "\n");
 
         //time
-        station_string = station_string.concat("Next train arrives at " + "placeholder" + "\n");
+        station_string = station_string.concat("Next train arrives at " + time + "\n");
 
         return station_string;
     }
@@ -180,7 +179,7 @@ public class favorites extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.favorites);
         String[] favorite_stops = getFavorites();
-        populateFavorites();
+        //populateFavorites();
 
         ImageView logo_img = (ImageView) findViewById(R.id.app_logo);
         logo_img.setOnClickListener(new View.OnClickListener() {
@@ -208,6 +207,7 @@ public class favorites extends AppCompatActivity {
                 Spinner favorite_station_spinner = (Spinner) findViewById(R.id.favorite_station_spinner);
                 String fave = favorite_station_spinner.getSelectedItem().toString();
 
+                new RetrieveRailStopTimesTask(favorites.this).execute("Suburban Station");
                 //Log.i("FAVE: ", fave);
 
                 try {
