@@ -71,36 +71,7 @@ public class favorites extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.stations_list);
         listView.setAdapter(adapter);
 
-        String[] favArray = getFavorites();
-        try {
-            for (String fav : favArray) {
-                String response = new RetrieveRailStopTimesTask(this).execute(fav).get();
-
-                try {
-                    JSONObject stopList = (JSONObject) new JSONTokener(response).nextValue();
-                    Iterator<String> keys = stopList.keys();
-                    JSONArray stationList = stopList.getJSONArray(keys.next());
-
-                    JSONObject directions = stationList.getJSONObject(0);
-                    JSONArray direction = directions.getJSONArray("Northbound");
-                    JSONObject stop = direction.getJSONObject(0);
-
-                    String time = stop.getString("sched_time");
-
-                    //TODO: Handle time variable
-                    Log.d("ASYNCTASK", "time = "+time);
-                    times.add(time);
-
-                } catch (JSONException | ClassCastException f) {
-                    // Appropriate error handling code
-                }
-            }
-        } catch(InterruptedException | ExecutionException f) {
-            Log.e("IE", f.getMessage());
-        }
-
-
-        populateFavorites(favArray, times);
+        callSepta(this);
 
         //populate spinner with different line types: Rail, Bus, Subway
         Spinner type_spinner = (Spinner) findViewById(R.id.favorite_type_spinner);
@@ -119,9 +90,6 @@ public class favorites extends AppCompatActivity {
             {
                 Spinner favorite_station_spinner = (Spinner) findViewById(R.id.favorite_station_spinner);
                 String fave = favorite_station_spinner.getSelectedItem().toString();
-
-                //new RetrieveRailStopTimesTask(favorites.this).execute("Suburban Station");
-                //Log.i("FAVE: ", fave);
 
                 try {
                     /* File myFile = new File(Environment.getExternalStorageDirectory().getPath()+"/fave_stops.txt"); */
@@ -167,6 +135,7 @@ public class favorites extends AppCompatActivity {
                 }
 
                 Log.i("AFTER ADD: ", fave);
+                callSepta(favorites.this);
             }
         });
 
@@ -520,9 +489,37 @@ public class favorites extends AppCompatActivity {
         }
     }
 
-    public void buildTimes(String time) {
-        Log.d("buildTimes", "can access");
-        times.add(time);
+    public void callSepta(favorites anActivity) {
+        String[] favArray = getFavorites();
+
+        try {
+            for (String fav : favArray) {
+                String response = new RetrieveRailStopTimesTask(anActivity).execute(fav).get();
+
+                try {
+                    JSONObject stopList = (JSONObject) new JSONTokener(response).nextValue();
+                    Iterator<String> keys = stopList.keys();
+                    JSONArray stationList = stopList.getJSONArray(keys.next());
+
+                    JSONObject directions = stationList.getJSONObject(0);
+                    JSONArray direction = directions.getJSONArray("Northbound");
+                    JSONObject stop = direction.getJSONObject(0);
+
+                    String time = stop.getString("sched_time");
+
+                    //TODO: Handle time variable
+                    Log.d("ASYNCTASK", "time = "+time);
+                    times.add(time);
+
+                } catch (JSONException | ClassCastException f) {
+                    // Appropriate error handling code
+                }
+            }
+        } catch(InterruptedException | ExecutionException f) {
+            Log.e("IE", f.getMessage());
+        }
+
+        populateFavorites(favArray, times);
     }
 
 }
