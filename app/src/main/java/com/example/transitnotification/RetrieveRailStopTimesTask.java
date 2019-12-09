@@ -62,7 +62,7 @@ public class RetrieveRailStopTimesTask extends AsyncTask<String, Void, String> {
         }
     }
 
-    /*
+
     @Override
     protected void onPostExecute(String response) {
 
@@ -92,7 +92,7 @@ public class RetrieveRailStopTimesTask extends AsyncTask<String, Void, String> {
         }
 
     }
-    */
+
 }
 
 

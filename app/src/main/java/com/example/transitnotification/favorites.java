@@ -90,7 +90,6 @@ public class favorites extends AppCompatActivity {
             Log.e("IE", f.getMessage());
         }
 
-
         populateFavorites(favArray, times);
 
         //populate spinner with different line types: Rail, Bus, Subway
@@ -288,14 +287,14 @@ public class favorites extends AppCompatActivity {
     public void populateFavorites(String[] favorites, ArrayList<String> times)
     {
         adapter.clear();
-        String[] favorites = getFavorites();
+        String[] favorite_array = getFavorites();
 
         int iterator;
 
-        for(iterator = 0; iterator < favorites.length; iterator++)
+        for(iterator = 0; iterator < favorite_array.length; iterator++)
         {
-            Log.i("SS: ", makeFaveCard(favorites[iterator], times.get(iterator)));
-            adapter.add(makeFaveCard(favorites[iterator], times.get(iterator)));
+            Log.i("SS: ", makeFaveCard(favorite_array[iterator], times.get(iterator)));
+            adapter.add(makeFaveCard(favorite_array[iterator], times.get(iterator)));
         }
 
     }
