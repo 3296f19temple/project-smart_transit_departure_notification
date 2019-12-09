@@ -28,9 +28,11 @@ public class RetrieveRailStopTimesTask extends AsyncTask<String, Void, String> {
     favorites anActivity;
 
     public RetrieveRailStopTimesTask(favorites a) {
+        Log.d("rrstt", "construct");
         anActivity = a;
     }
 
+    @Override
     protected String doInBackground(String... urls) {
 
         try {
@@ -60,8 +62,9 @@ public class RetrieveRailStopTimesTask extends AsyncTask<String, Void, String> {
         }
     }
 
+    /*
+    @Override
     protected void onPostExecute(String response) {
-        android.os.Debug.waitForDebugger();
 
         if(response == null) {
             response = "THERE WAS AN ERROR";
@@ -89,7 +92,7 @@ public class RetrieveRailStopTimesTask extends AsyncTask<String, Void, String> {
         }
 
     }
-
+    */
 }
 
 

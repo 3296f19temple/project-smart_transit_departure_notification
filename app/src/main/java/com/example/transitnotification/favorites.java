@@ -22,6 +22,11 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -34,8 +39,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.StringTokenizer;
+import java.util.concurrent.ExecutionException;
 
 public class favorites extends AppCompatActivity {
 
@@ -44,7 +51,7 @@ public class favorites extends AppCompatActivity {
     String yourFileName = "fave_stops.txt";
     ArrayList<String> list_for_table=new ArrayList<String>();
     ArrayAdapter<String> adapter;
-    public ArrayList<String> times = new ArrayList<>();
+    ArrayList<String> times = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +72,33 @@ public class favorites extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         String[] favArray = getFavorites();
-        for (String fav : favArray) {
-            new RetrieveRailStopTimesTask(this).execute(fav);
+        try {
+            for (String fav : favArray) {
+                String response = new RetrieveRailStopTimesTask(this).execute(fav).get();
+
+                try {
+                    JSONObject stopList = (JSONObject) new JSONTokener(response).nextValue();
+                    Iterator<String> keys = stopList.keys();
+                    JSONArray stationList = stopList.getJSONArray(keys.next());
+
+                    JSONObject directions = stationList.getJSONObject(0);
+                    JSONArray direction = directions.getJSONArray("Northbound");
+                    JSONObject stop = direction.getJSONObject(0);
+
+                    String time = stop.getString("sched_time");
+
+                    //TODO: Handle time variable
+                    Log.d("ASYNCTASK", "time = "+time);
+                    times.add(time);
+
+                } catch (JSONException | ClassCastException f) {
+                    // Appropriate error handling code
+                }
+            }
+        } catch(InterruptedException | ExecutionException f) {
+            Log.e("IE", f.getMessage());
         }
+
 
         populateFavorites(favArray, times);
 
@@ -490,6 +521,7 @@ public class favorites extends AppCompatActivity {
     }
 
     public void buildTimes(String time) {
+        Log.d("buildTimes", "can access");
         times.add(time);
     }
 
