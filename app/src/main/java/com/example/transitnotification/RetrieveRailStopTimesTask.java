@@ -23,20 +23,20 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 //RetrieveFeedTask calls API in background via asynchronous thread
-public class RetrieveRailTimesTask extends AsyncTask<String, Void, String> {
+public class RetrieveRailStopTimesTask extends AsyncTask<String, Void, String> {
 
-    rail_selector RailSelectorActivity;
+    favorites anActivity;
 
-    public RetrieveRailTimesTask(rail_selector a) {
-        RailSelectorActivity = a;
+    public RetrieveRailStopTimesTask(favorites a) {
+        anActivity = a;
     }
 
     protected String doInBackground(String... urls) {
 
         try {
             //connect to api endpoints
-            URL url = new URL("http://www3.septa.org/hackathon/NextToArrive/" +
-                    urls[0].replace(" ", "%20") + "/" + urls[1].replace(" ", "%20"));
+            URL url = new URL("http://www3.septa.org/hackathon/Arrivals/" +
+                    urls[0].replace(" ", "%20") + "/" + "1");
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
             //put information into a string variable: line
@@ -67,17 +67,19 @@ public class RetrieveRailTimesTask extends AsyncTask<String, Void, String> {
 
         //turn response(string) into JSON Object which we extract desired values from
         try {
-            JSONArray stopList = (JSONArray) new JSONTokener(response).nextValue();
-            //Iterator<String> keys = JSONList.keys();
-            //JSONArray stopList = JSONList.getJSONArray(keys.next());
+            JSONObject stopList = (JSONObject) new JSONTokener(response).nextValue();
+            Iterator<String> keys = stopList.keys();
+            JSONArray stationList = stopList.getJSONArray(keys.next());
 
-            JSONObject stop = stopList.getJSONObject(0);
-            String time = stop.getString("orig_arrival_time");
+            JSONObject directions = stationList.getJSONObject(0);
+            JSONArray direction = directions.getJSONArray("Northbound");
+            JSONObject stop = direction.getJSONObject(0);
+
+            String time = stop.getString("sched_time");
 
             //TODO: Handle time variable
             Log.d("ASYNCTASK", "time = "+time);
-            rail_selector.time = time;
-            RailSelectorActivity.getArrivalTime();
+            anActivity.populateFavorites(time);
 
 
         } catch (JSONException | ClassCastException f) {
@@ -88,4 +90,5 @@ public class RetrieveRailTimesTask extends AsyncTask<String, Void, String> {
     }
 
 }
+
 
