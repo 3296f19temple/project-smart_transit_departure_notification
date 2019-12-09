@@ -49,23 +49,14 @@
             android:orientation="horizontal"
             tools:layout_editor_absoluteX="0dp">
 
-<!--            &lt;!&ndash;Bus button&ndash;&gt;-->
-<!--            <ImageView-->
-<!--                android:id="@+id/bus_icon"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="215dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:contentDescription="@string/bus_icon"-->
-<!--                app:srcCompat="@drawable/selector_frame_bus" />-->
-
-            <!--Subway button-->
+            <!--Bus button-->
             <ImageView
-                android:id="@+id/subway_icon"
+                android:id="@+id/bus_icon"
                 android:layout_width="0dp"
                 android:layout_height="215dp"
                 android:layout_weight="1"
-                android:contentDescription="@string/subway_icon"
-                app:srcCompat="@drawable/selector_frame_subway" />
+                android:contentDescription="@string/bus_icon"
+                app:srcCompat="@drawable/selector_frame_bus" />
 
             <ImageView
                 android:id="@+id/rail_icon"
@@ -97,6 +88,15 @@
                 android:layout_weight="1"
                 android:contentDescription="@string/favorites_icon"
                 app:srcCompat="@drawable/selector_frame_favorites" />
+
+            <!--Subway button-->
+            <ImageView
+                android:id="@+id/subway_icon"
+                android:layout_width="0dp"
+                android:layout_height="215dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/subway_icon"
+                app:srcCompat="@drawable/selector_frame_subway" />
 
         </LinearLayout>
         <!--For displaying last known lcoation-->
