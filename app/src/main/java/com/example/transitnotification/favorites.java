@@ -3,6 +3,7 @@ package com.example.transitnotification;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,11 +11,13 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -30,6 +33,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -38,6 +42,8 @@ public class favorites extends AppCompatActivity {
     private Button delete_fave_button;
     private Button add_fave_button;
     String yourFileName = "fave_stops.txt";
+    ArrayList<String> list_for_table=new ArrayList<String>();
+    ArrayAdapter<String> adapter;
 
     public String[] getFavorites()
     {
@@ -134,31 +140,14 @@ public class favorites extends AppCompatActivity {
 
     public void populateFavorites()
     {
-        LinearLayout favorites_holder = (LinearLayout) findViewById(R.id.favorites_holder);
-
-        //parent
-        ScrollView scroller = new ScrollView(getApplicationContext());
-
-        //child that holds textviews
-        LinearLayout scroll_holder = new LinearLayout(getApplicationContext());
-        //scroll_holder.setOrientation(LinearLayout.VERTICAL);
-
         String[] favorites = getFavorites();
         int iterator;
 
         for(iterator = 0; iterator < favorites.length; iterator++)
         {
-            TextView favorite = new TextView(getApplicationContext());
-
             Log.i("SS: ", makeFaveCard(favorites[iterator]));
-            favorite.setText(makeFaveCard(favorites[iterator]));
-
-            scroll_holder.addView(favorite);
+            adapter.add(makeFaveCard(favorites[iterator]));
         }
-
-        scroller.addView(scroll_holder);
-        favorites_holder.addView(scroller);
-
     }
 
     public String makeFaveCard(String station)
@@ -180,7 +169,6 @@ public class favorites extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.favorites);
         String[] favorite_stops = getFavorites();
-        populateFavorites();
 
         ImageView logo_img = (ImageView) findViewById(R.id.app_logo);
         logo_img.setOnClickListener(new View.OnClickListener() {
@@ -189,6 +177,13 @@ public class favorites extends AppCompatActivity {
                 startActivity(myIntent);
             }
         });
+
+        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, list_for_table);
+
+        ListView listView = (ListView) findViewById(R.id.stations_list);
+        listView.setAdapter(adapter);
+
+        populateFavorites();
 
         //populate spinner with different line types: Rail, Bus, Subway
         Spinner type_spinner = (Spinner) findViewById(R.id.favorite_type_spinner);

@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         LaunchLocationUpdates();
       
         //Anonymous on click function that redirects to the bus selector activity
-        /*
         ImageView bus_img = (ImageView) findViewById(R.id.bus_icon);
         bus_img.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -52,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 startActivity(myIntent);
             }
         });
-        */
 
         //Anonymous on click function that redirects to the subway selector activity
         ImageView subway_img = (ImageView) findViewById(R.id.subway_icon);

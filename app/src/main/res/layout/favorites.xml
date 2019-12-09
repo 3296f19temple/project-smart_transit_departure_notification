@@ -31,6 +31,7 @@
 
     <!--Vertical layout of content body-->
     <LinearLayout
+        android:id="@+id/content_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -144,14 +145,20 @@
 
         <!--Vertical layout of second row-->
         <LinearLayout
-
             android:id="@+id/favorites_holder"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_height="260dp"
             android:layout_weight="1"
+            android:layout_marginTop="10dp"
             android:orientation="vertical"
-            tools:layout_editor_absoluteX="0dp">
+            tools:layout_editor_absoluteX="0dp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ListView
+                android:id="@+id/stations_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </ListView>
 
         </LinearLayout>
 
