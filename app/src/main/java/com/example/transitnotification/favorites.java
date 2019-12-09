@@ -1,26 +1,19 @@
 package com.example.transitnotification;
 
-import androidx.appcompat.app.AlertDialog;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActionBar;
-import android.content.Context;
-import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,12 +25,10 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -178,6 +169,14 @@ public class favorites extends AppCompatActivity {
                 Spinner favorite_station_spinner = (Spinner) findViewById(R.id.favorite_station_spinner);
                 String fave = favorite_station_spinner.getSelectedItem().toString();
 
+                for(int y = 0; y< list_for_table.size(); y++)
+                {
+                    if((list_for_table.get(y)).contains(fave))
+                    {
+                        list_for_table.remove(y);
+                    }
+                }
+                adapter.notifyDataSetChanged();
                 //Log.i("FAVE: ", fave);
 
                 try {
@@ -288,6 +287,9 @@ public class favorites extends AppCompatActivity {
 
     public void populateFavorites(String[] favorites, ArrayList<String> times)
     {
+        adapter.clear();
+        String[] favorites = getFavorites();
+
         int iterator;
 
         for(iterator = 0; iterator < favorites.length; iterator++)
