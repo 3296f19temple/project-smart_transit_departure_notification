@@ -61,6 +61,8 @@ public class RetrieveRailStopTimesTask extends AsyncTask<String, Void, String> {
     }
 
     protected void onPostExecute(String response) {
+        android.os.Debug.waitForDebugger();
+
         if(response == null) {
             response = "THERE WAS AN ERROR";
         }
@@ -79,13 +81,12 @@ public class RetrieveRailStopTimesTask extends AsyncTask<String, Void, String> {
 
             //TODO: Handle time variable
             Log.d("ASYNCTASK", "time = "+time);
-            anActivity.populateFavorites(time);
+            anActivity.buildTimes(time);
 
 
         } catch (JSONException | ClassCastException f) {
             // Appropriate error handling code
         }
-
 
     }
 

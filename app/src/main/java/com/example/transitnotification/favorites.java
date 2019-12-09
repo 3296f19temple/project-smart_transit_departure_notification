@@ -44,6 +44,123 @@ public class favorites extends AppCompatActivity {
     String yourFileName = "fave_stops.txt";
     ArrayList<String> list_for_table=new ArrayList<String>();
     ArrayAdapter<String> adapter;
+    public ArrayList<String> times = new ArrayList<>();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.favorites);
+
+        ImageView logo_img = (ImageView) findViewById(R.id.app_logo);
+        logo_img.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent myIntent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(myIntent);
+            }
+        });
+
+        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, list_for_table);
+
+        ListView listView = (ListView) findViewById(R.id.stations_list);
+        listView.setAdapter(adapter);
+
+        String[] favArray = getFavorites();
+        for (String fav : favArray) {
+            new RetrieveRailStopTimesTask(this).execute(fav);
+        }
+
+        populateFavorites(favArray, times);
+
+        //populate spinner with different line types: Rail, Bus, Subway
+        Spinner type_spinner = (Spinner) findViewById(R.id.favorite_type_spinner);
+        ArrayAdapter<CharSequence> type_adapter = ArrayAdapter.createFromResource(this,
+                R.array.line_types_array, android.R.layout.simple_spinner_item);
+        type_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        type_spinner.setAdapter(type_adapter);
+
+        //Automate selection to populate line selector
+        type_spinner.setOnItemSelectedListener(new ItemSelectedListener());
+
+        add_fave_button = findViewById(R.id.fave_button);
+        add_fave_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Spinner favorite_station_spinner = (Spinner) findViewById(R.id.favorite_station_spinner);
+                String fave = favorite_station_spinner.getSelectedItem().toString();
+
+                //new RetrieveRailStopTimesTask(favorites.this).execute("Suburban Station");
+                //Log.i("FAVE: ", fave);
+
+                try {
+                    /* File myFile = new File(Environment.getExternalStorageDirectory().getPath()+"/fave_stops.txt"); */
+                    File file = new File(getApplicationContext().getFilesDir(), "fave_stops.txt");
+                    boolean is_inside = false;
+
+                    if (!file.exists()) {
+                        file.createNewFile();
+                    }
+
+                    Scanner check_for_duplicate = new Scanner(file);
+
+                    while(check_for_duplicate.hasNextLine()){
+                        String line = check_for_duplicate.nextLine();
+                        if(line.equals(fave))
+                        {
+                            is_inside = true;
+                        }
+                    }
+
+                    if(is_inside)
+                    {
+                        Log.i("ALREADY FAVE: ", fave);
+                    }
+                    else
+                    {
+                        try {
+                            Log.i("WRITE TO FILE: ", fave);
+                            FileWriter writer = new FileWriter(file, true);
+                            writer.write(fave + "\n");
+                            writer.flush();
+                            writer.close();
+
+                        } catch (Exception e) {
+                            Log.i("FAVE ADD CATCH1: ", fave);
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                catch (Exception e) {
+                    Log.i("FAVE ADD CATCH2: ", fave);
+                    e.printStackTrace();
+                }
+
+                Log.i("AFTER ADD: ", fave);
+            }
+        });
+
+        delete_fave_button = findViewById(R.id.delete_button);
+        delete_fave_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Spinner favorite_station_spinner = (Spinner) findViewById(R.id.favorite_station_spinner);
+                String fave = favorite_station_spinner.getSelectedItem().toString();
+
+                //Log.i("FAVE: ", fave);
+
+                try {
+                    deleteFavorite(fave);
+                }
+                catch (Exception e) {
+                    Log.i("Delete", "ONCLICK delete catch");
+                    e.printStackTrace();
+                }
+
+                Log.i("AFTER DELETE: ", "Deleted");
+            }
+        });
+    }
 
     public String[] getFavorites()
     {
@@ -138,21 +255,19 @@ public class favorites extends AppCompatActivity {
         }
     }
 
-    public void populateFavorites(String time)
+    public void populateFavorites(String[] favorites, ArrayList<String> times)
     {
-        String[] favorites = getFavorites();
         int iterator;
 
         for(iterator = 0; iterator < favorites.length; iterator++)
         {
-            Log.i("SS: ", makeFaveCard(favorites[iterator]));
-            adapter.add(makeFaveCard(favorites[iterator]));
+            Log.i("SS: ", makeFaveCard(favorites[iterator], times.get(iterator)));
+            adapter.add(makeFaveCard(favorites[iterator], times.get(iterator)));
         }
 
     }
 
-    public String makeFaveCard(String station, String time)
-    {
+    public String makeFaveCard(String station, String time) {
         String station_string = "";
 
         //append all station information to card
@@ -163,119 +278,6 @@ public class favorites extends AppCompatActivity {
         station_string = station_string.concat("Next train arrives at " + time + "\n");
 
         return station_string;
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.favorites);
-        String[] favorite_stops = getFavorites();
-
-
-        ImageView logo_img = (ImageView) findViewById(R.id.app_logo);
-        logo_img.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent myIntent = new Intent(getBaseContext(), MainActivity.class);
-                startActivity(myIntent);
-            }
-        });
-
-        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, list_for_table);
-
-        ListView listView = (ListView) findViewById(R.id.stations_list);
-        listView.setAdapter(adapter);
-
-        populateFavorites();
-
-        //populate spinner with different line types: Rail, Bus, Subway
-        Spinner type_spinner = (Spinner) findViewById(R.id.favorite_type_spinner);
-        ArrayAdapter<CharSequence> type_adapter = ArrayAdapter.createFromResource(this,
-                R.array.line_types_array, android.R.layout.simple_spinner_item);
-        type_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        type_spinner.setAdapter(type_adapter);
-
-        //Automate selection to populate line selector
-        type_spinner.setOnItemSelectedListener(new ItemSelectedListener());
-
-        add_fave_button = findViewById(R.id.fave_button);
-        add_fave_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                Spinner favorite_station_spinner = (Spinner) findViewById(R.id.favorite_station_spinner);
-                String fave = favorite_station_spinner.getSelectedItem().toString();
-
-                new RetrieveRailStopTimesTask(favorites.this).execute("Suburban Station");
-                //Log.i("FAVE: ", fave);
-
-                try {
-                    /* File myFile = new File(Environment.getExternalStorageDirectory().getPath()+"/fave_stops.txt"); */
-                    File file = new File(getApplicationContext().getFilesDir(), "fave_stops.txt");
-                    boolean is_inside = false;
-
-                    if (!file.exists()) {
-                        file.createNewFile();
-                    }
-
-                    Scanner check_for_duplicate = new Scanner(file);
-
-                    while(check_for_duplicate.hasNextLine()){
-                        String line = check_for_duplicate.nextLine();
-                        if(line.equals(fave))
-                        {
-                            is_inside = true;
-                        }
-                    }
-
-                    if(is_inside)
-                    {
-                        Log.i("ALREADY FAVE: ", fave);
-                    }
-                    else
-                    {
-                        try {
-                            Log.i("WRITE TO FILE: ", fave);
-                            FileWriter writer = new FileWriter(file, true);
-                            writer.write(fave + "\n");
-                            writer.flush();
-                            writer.close();
-
-                        } catch (Exception e) {
-                            Log.i("FAVE ADD CATCH1: ", fave);
-                            e.printStackTrace();
-                        }
-                    }
-                }
-                catch (Exception e) {
-                    Log.i("FAVE ADD CATCH2: ", fave);
-                    e.printStackTrace();
-                }
-
-                Log.i("AFTER ADD: ", fave);
-            }
-        });
-
-        delete_fave_button = findViewById(R.id.delete_button);
-        delete_fave_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                Spinner favorite_station_spinner = (Spinner) findViewById(R.id.favorite_station_spinner);
-                String fave = favorite_station_spinner.getSelectedItem().toString();
-
-                //Log.i("FAVE: ", fave);
-
-                try {
-                    deleteFavorite(fave);
-                }
-                catch (Exception e) {
-                    Log.i("Delete", "ONCLICK delete catch");
-                    e.printStackTrace();
-                }
-
-                Log.i("AFTER DELETE: ", "Deleted");
-            }
-        });
     }
 
     //used to dynamically respond when selecting item: can be used on ALL spinners
@@ -485,6 +487,10 @@ public class favorites extends AppCompatActivity {
         public void onNothingSelected(AdapterView parent) {
             // Do nothing.
         }
+    }
+
+    public void buildTimes(String time) {
+        times.add(time);
     }
 
 }
