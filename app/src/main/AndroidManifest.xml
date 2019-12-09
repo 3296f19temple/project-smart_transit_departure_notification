@@ -16,9 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".favorites"
-            android:screenOrientation="portrait"></activity>
         <activity android:name=".subway_selector"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".favorites"
             android:screenOrientation="portrait"/>
         <activity android:name=".rail_selector"
             android:screenOrientation="portrait"/>
